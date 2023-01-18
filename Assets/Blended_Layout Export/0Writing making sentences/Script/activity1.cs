@@ -15,6 +15,7 @@ public class activity1 : MonoBehaviour
     bool B_CanClick;
     public AudioSource AS_Crt, AS_Wrg;
     public Text TXT_Max, TXT_current;
+    public GameObject G_fire;
     
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class activity1 : MonoBehaviour
         G_Final.SetActive(false);
         TXT_Max.text = STR_Texts.Length.ToString();
         ShowQuestion();
+     
     }
     public void ShowQuestion()
     {
@@ -56,10 +58,11 @@ public class activity1 : MonoBehaviour
             if (I_Qcount == 0 || I_Qcount == 3 || I_Qcount == 4 || I_Qcount == 6 || I_Qcount == 9)
             {
                 B_CanClick = false;
-                AS_Crt.Play();
+               AS_Crt.Play();
                 Vector3 temp = G_tempmove.GetComponent<RectTransform>().transform.position;
                 temp.x = temp.x + 1;
                 G_tempmove.GetComponent<RectTransform>().transform.position = temp;
+                G_fire.GetComponent<Image>().transform.localScale += new Vector3(0.20f, 0.20f, 0f);
             }
             else
             {
@@ -75,11 +78,13 @@ public class activity1 : MonoBehaviour
         {
             if (I_Qcount == 1 || I_Qcount == 2 || I_Qcount == 5 || I_Qcount == 7 || I_Qcount == 8)
             {
+
                 B_CanClick = false;
                 AS_Crt.Play();
                 Vector3 temp = G_tempmove.GetComponent<RectTransform>().transform.position;
                 temp.x = temp.x + 1;
                 G_tempmove.GetComponent<RectTransform>().transform.position = temp;
+                G_fire.GetComponent<Image>().transform.localScale += new Vector3(0.20f, 0.20f, 0f);
             }
             else
             {

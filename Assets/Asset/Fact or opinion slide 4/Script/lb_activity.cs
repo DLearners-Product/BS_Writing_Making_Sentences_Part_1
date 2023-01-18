@@ -14,6 +14,8 @@ public class lb_activity : MonoBehaviour
     public AudioSource AS_Correct, AS_Wrong;
     bool B_Canclick;
     public Text TXT_Max, TXT_current;
+    public Button backButton;
+    public Button nextButton;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class lb_activity : MonoBehaviour
         TXT_Max.text = GA_Questions.Length.ToString();
         I_Qcount = 0;
         THI_ShowQuestion();
+        backButton.gameObject.SetActive(false);
     }
     void THI_ShowQuestion()
     {
@@ -43,6 +46,7 @@ public class lb_activity : MonoBehaviour
         {
             I_Qcount++;
             THI_ShowQuestion();
+            BUT_Enabler();
         }
         else
         {
@@ -53,8 +57,9 @@ public class lb_activity : MonoBehaviour
     {
         if (I_Qcount >0)
         {
-            I_Qcount++;
+            I_Qcount--;
             THI_ShowQuestion();
+            BUT_Enabler();
         }
         else
         {
@@ -89,5 +94,22 @@ public class lb_activity : MonoBehaviour
     {
         B_Canclick = true;
         G_Selected.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+    }
+
+    public void BUT_Enabler()
+    {
+        if (I_Qcount == 0)
+        {
+            backButton.gameObject.SetActive(false);
+        }
+        else if (I_Qcount == GA_Questions.Length - 1)
+        {
+            nextButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            backButton.gameObject.SetActive(true);
+            nextButton.gameObject.SetActive(true);
+        }
     }
 }
