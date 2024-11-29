@@ -11,6 +11,7 @@ public class T7Manager : MonoBehaviour
     [Header("TEXTMESHPRO---------------------------------------------------------")]
     [SerializeField] private TextMeshProUGUI TXT_Current;
     [SerializeField] private TextMeshProUGUI TXT_Total;
+    
 
    
 

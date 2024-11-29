@@ -8,6 +8,7 @@ public class T7DotweenManager : MonoBehaviour
 
     public GameObject[] objects;
     
+    
 
 
     void Start()
