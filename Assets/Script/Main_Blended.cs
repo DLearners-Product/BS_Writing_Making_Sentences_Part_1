@@ -38,7 +38,7 @@ public class Main_Blended : MonoBehaviour
 
 
     public VideoPlayer Videoplayerinlevel;
-    bool B_pause;
+    public bool B_pause;
 
 
 
@@ -137,7 +137,7 @@ public class Main_Blended : MonoBehaviour
        /////////////////////////////////////////////////////////// STR_date_with_time = System.DateTime.Now.ToString("dd-MM-yy HH:mm");
 
         i_vol = 0;
-        B_pause = false;
+        B_pause = true;
         levelno = 0;
         THI_cloneLevels();
 
@@ -783,7 +783,7 @@ public class Main_Blended : MonoBehaviour
 
     public void THI_cloneLevels()
     {
-        B_pause = false;
+        B_pause = true;
         ImmersiveObjects = new GameObject[0];
         G_worksheet.transform.GetChild(0).gameObject.SetActive(false);
         //  Debug.Log("zzzzzzz111111==="+ImmersiveObjects.Length);
@@ -862,24 +862,27 @@ public class Main_Blended : MonoBehaviour
 
     public void THI_videoSlidesPausePlay()
     {
-        Videoplayerinlevel = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
-        if (B_pause)
+        for (int i = 0; i < HAS_VIDEO.Length; i++)
         {
-            if (Videoplayerinlevel != null)
+            if(HAS_VIDEO[i] == true)
             {
-                // Debug.Log("Play video");
-                Videoplayerinlevel.Play();
-                B_pause = false;
-            }
-        }
-        else
-        {
-            // Debug.Log("Pause Bool false");
-            if (Videoplayerinlevel != null)
-            {
-                //   Debug.Log("Pause Video");
-                Videoplayerinlevel.Pause();
-                B_pause = true;
+                Videoplayerinlevel = GameObject.Find("Video Player").GetComponent<VideoPlayer>();
+                if (!B_pause)
+                {
+                    if (Videoplayerinlevel != null)
+                    {
+                        Videoplayerinlevel.Pause();
+                        B_pause = true;
+                    }
+                }
+                else
+                {
+                    if (Videoplayerinlevel != null)
+                    {
+                        Videoplayerinlevel.Play();
+                        B_pause = false;
+                    }
+                }
             }
         }
     }
@@ -892,7 +895,7 @@ public class Main_Blended : MonoBehaviour
 
     public void levelselect(int level)
     {
-        B_pause = false;
+      //  B_pause = false;
         levelno = level;
       //  THI_videoSlidesMute();
         THI_cloneLevels();
