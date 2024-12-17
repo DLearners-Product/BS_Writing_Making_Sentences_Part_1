@@ -13,4 +13,9 @@ public class ClickAudio : MonoBehaviour, IPointerDownHandler
         audioSource.clip = clip;
         audioSource.Play();
     }
+
+    public void VoStop()
+    {
+        audioSource.Stop();
+    }
 }
